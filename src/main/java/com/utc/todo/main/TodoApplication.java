@@ -16,18 +16,4 @@ public class TodoApplication extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(TodoApplication.class, args);
     }
-
-//    implements CommandLineRunner
-//
-//    @Autowired
-//    CustomerRepo customerRepo;
-//
-//    @Override
-//    public void run(String... args) throws Exception {
-//        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-//        Customer customer = new Customer();
-//        customer.setUsername("tothang");
-//        customer.setPassword(bCryptPasswordEncoder.encode("12345"));
-//        customerRepo.save(customer);
-//    }
 }

@@ -20,7 +20,6 @@ public class RegisterController {
 
     @PostMapping("/register")
     private String register(Customer customer, Model model) {
-        System.out.println(customer);
         try {
             customerRepo.save(customer);
         } catch (Exception e) {
