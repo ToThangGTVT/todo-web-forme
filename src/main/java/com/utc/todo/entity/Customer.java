@@ -1,6 +1,6 @@
 package com.utc.todo.entity;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -98,8 +98,9 @@ public class Customer {
     }
 
     public void setPassword(String password) {
-        BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
-        this.password = bCrypt.encode(password);
+//        BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
+//        this.password = bCrypt.encode(password);
+        this.password = password;
     }
 
     public List<Post> getPosts() {
