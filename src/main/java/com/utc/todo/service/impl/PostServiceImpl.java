@@ -26,8 +26,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post getById(int id) {
-        return postRepo.getById(id);
+    public Post getByIdAndCustomer(int id, Customer customer) {
+        return postRepo.getByIdAndCustomer(id, customer);
     }
 
     @Override

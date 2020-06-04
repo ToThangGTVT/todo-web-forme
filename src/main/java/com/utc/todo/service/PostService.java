@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PostService {
 
-    Post getById(int id);
+    Post getByIdAndCustomer(int id, Customer customer);
 
     List<Post> getAll(Customer customer);
 

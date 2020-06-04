@@ -68,7 +68,7 @@ public class HomeController {
     @GetMapping("/api/change/done")
     private String changeStatusDone(@RequestParam("id") int id) {
         System.out.println("x");
-        Post post = postService.getById(id);
+        Post post = postService.getByIdAndCustomer(id, getCustomer());
         post.setStatus("1");
         postService.save(post);
         return "redirect:/";
@@ -77,7 +77,7 @@ public class HomeController {
     @GetMapping("/api/change/undone")
     private String changeStatusUndone(@RequestParam("id") int id) {
         System.out.println("x");
-        Post post = postService.getById(id);
+        Post post = postService.getByIdAndCustomer(id, getCustomer());
         post.setStatus("0");
         postService.save(post);
         return "redirect:/";
