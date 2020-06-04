@@ -9,7 +9,11 @@ import java.util.List;
 
 public interface PostService {
 
+    Post getById(int id);
+
     List<Post> getAll(Customer customer);
+
+    Post save(Post post);
 
     Post save(String content, String strBegin, String strEnd, Customer customer, String title) throws ParseException, DateInputException;
 }

@@ -26,8 +26,18 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public Post getById(int id) {
+        return postRepo.getById(id);
+    }
+
+    @Override
     public List<Post> getAll(Customer customer) {
         return postRepo.getAllByCustomer(customer);
+    }
+
+    @Override
+    public Post save(Post post) {
+        return postRepo.save(post);
     }
 
     @Override

@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface PostRepo extends JpaRepository<Post, Serializable> {
     List<Post> getAllByCustomer(Customer customer);
+
+    Post getById(int id);
 }
