@@ -1,7 +1,9 @@
 package com.utc.todo.controller;
 
+import com.utc.todo.entity.Authority;
 import com.utc.todo.entity.Customer;
 import com.utc.todo.repository.CustomerRepo;
+import com.utc.todo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,17 +13,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class RegisterController {
 
-    private CustomerRepo customerRepo;
+    private CustomerService customerService;
 
     @Autowired
-    public RegisterController(CustomerRepo customerRepo) {
-        this.customerRepo = customerRepo;
+    public RegisterController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
     @PostMapping("/register")
     private String register(Customer customer, Model model) {
         try {
-            customerRepo.save(customer);
+            customerService.save(customer);
         } catch (Exception e) {
             model.addAttribute("err", "err");
             return "register";

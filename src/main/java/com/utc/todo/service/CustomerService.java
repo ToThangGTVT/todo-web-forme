@@ -9,23 +9,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service
-public class CustomerService implements UserDetailsService {
+public interface CustomerService extends UserDetailsService {
 
-    private final CustomerRepo customerRepo;
+    UserDetails loadUserByUsername(String username);
 
-    @Autowired
-    public CustomerService(CustomerRepo customerRepo) {
-        this.customerRepo = customerRepo;
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) {
-        Customer customer = customerRepo.findByUsername(username);
-        if (customer == null) {
-            throw new UsernameNotFoundException(username);
-        }
-        CustomUserDetail customUserDetail = new CustomUserDetail(customer);
-        return customUserDetail;
-    }
+    Customer save(Customer customer);
 }

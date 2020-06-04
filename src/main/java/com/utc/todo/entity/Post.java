@@ -2,7 +2,6 @@ package com.utc.todo.entity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 public class Post {
@@ -10,21 +9,16 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String content;
-    private int views;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Comment> comments;
+    @Column(columnDefinition = "text")
+    private String content;
+
+    private Date startDate;
+    private Date endDate;
+    private Date createDate;
+    private Date updateDate;
+    private String status;
 
     @ManyToOne
     private Customer customer;
-
-    @ManyToOne
-    private Category category;
-
-    private Date createDate;
-    private Date updateDate;
-
-    public Post() {
-    }
 }

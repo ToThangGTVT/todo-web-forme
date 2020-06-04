@@ -28,9 +28,6 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private List<Post> posts;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Comment> comments;
-
     @ManyToOne(fetch = FetchType.EAGER)
     private Authority authority;
 
@@ -100,23 +97,6 @@ public class Customer {
     public void setPassword(String password) {
         BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
         this.password = bCrypt.encode(password);
-//        this.password = password;
-    }
-
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
     }
 
     public Authority getAuthority() {
