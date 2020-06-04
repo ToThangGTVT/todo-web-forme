@@ -10,4 +10,6 @@ import java.io.Serializable;
 @Repository
 public interface CustomerRepo extends JpaRepository<Customer, Serializable> {
     Customer findByUsername(String username);
+
+    Customer getByUsername(String username);
 }

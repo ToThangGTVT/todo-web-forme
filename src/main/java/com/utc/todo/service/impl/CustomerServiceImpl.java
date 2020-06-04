@@ -17,6 +17,7 @@ import javax.transaction.Transactional;
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepo customerRepo;
+    private CustomUserDetail customUserDetail;
 
     @Autowired
     private AuthorityRepo authorityRepo;
@@ -32,8 +33,8 @@ public class CustomerServiceImpl implements CustomerService {
         if (customer == null) {
             throw new UsernameNotFoundException(username);
         }
-        CustomUserDetail customUserDetail = new CustomUserDetail(customer);
-        return customUserDetail;
+        this.customUserDetail = new CustomUserDetail(customer);
+        return this.customUserDetail;
     }
 
     @Override
@@ -42,5 +43,10 @@ public class CustomerServiceImpl implements CustomerService {
         Authority authority = authorityRepo.findByName("USER");
         customer.setAuthority(authority);
         return customerRepo.save(customer);
+    }
+
+    @Override
+    public Customer getByUsername(String username) {
+        return customerRepo.getByUsername(username);
     }
 }

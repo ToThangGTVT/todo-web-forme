@@ -141,6 +141,7 @@
             <!--thêm todo-->
             <div class="row">
                 <div class="card ml-0 mt-2 mr-2 w-100">
+                    <form action="/" method="post">
                     <div class="card-header">
                         <div class="row">
                             <div class="col">
@@ -149,19 +150,18 @@
                         </div>
                     </div>
                     <div class="card-body p-0">
-                        <textarea class="form-control" aria-label="With textarea" rows="5" style="border-color: ActiveBorder"></textarea>
+                        <textarea name="content" class="form-control" aria-label="With textarea" rows="5" style="border-color: ActiveBorder"></textarea>
                     </div>
                     <div class="card-footer text-muted">
-                        <form>
                             <div class="row">
                                 <div class="col-4">
-                                    <input class="rounded-pill input-group-text" type="datetime-local">
+                                    <input name="strBegin" class="rounded-pill input-group-text" type="datetime-local">
                                 </div>
                                 <div class="col-1">
                                     <h5 class="mt-2">To</h5>
                                 </div>
                                 <div class="col-4">
-                                    <input class="rounded-pill input-group-text" type="datetime-local">
+                                    <input name="strEnd" class="rounded-pill input-group-text" type="datetime-local">
                                 </div>
                                 <div class="col-2">
                                     <input type="submit" class="btn btn-primary rounded-pill">
@@ -171,8 +171,8 @@
                                     </input>
                                 </div>
                             </div>
-                        </form>
                     </div>
+                    </form>
                 </div>
             </div>
             <!--các todo-->
