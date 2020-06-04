@@ -13,11 +13,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class PostServiceImpl implements PostService {
 
-    private PostRepo postRepo;
+    private final PostRepo postRepo;
 
     @Autowired
     public PostServiceImpl(PostRepo postRepo) {
@@ -25,8 +26,13 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public List<Post> getAll(Customer customer) {
+        return postRepo.getAllByCustomer(customer);
+    }
+
+    @Override
     @Transactional(rollbackOn = Exception.class)
-    public Post save(String content, String strBegin, String strEnd, Customer customer) throws ParseException, DateInputException {
+    public Post save(String content, String strBegin, String strEnd, Customer customer, String title) throws ParseException, DateInputException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
         Date dateBegin = simpleDateFormat.parse(strBegin);
         Date dateEnd = simpleDateFormat.parse(strEnd);
@@ -39,6 +45,7 @@ public class PostServiceImpl implements PostService {
         post.setStatus("0");
         System.out.println(customer);
         post.setCustomer(customer);
+        post.setTitle(title);
 
         if (dateBegin.compareTo(dateEnd) > 0) {
             throw new DateInputException();

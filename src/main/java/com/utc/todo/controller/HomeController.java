@@ -33,16 +33,23 @@ public class HomeController {
 
     @GetMapping(value = "/")
     private String showHomeMain(Model model) {
+        model.addAttribute("posts",postService.getAll(getCustomer()));
         return "index";
     }
 
     @PostMapping("/")
     private String postData(@RequestParam(required = false) String content,
+                            @RequestParam(required = false) String title,
                             @RequestParam(required = false) String strBegin,
                             @RequestParam(required = false) String strEnd,
-                            HttpServletRequest request)
+                            Model model)
             throws ParseException, DateInputException {
+        Customer customer = getCustomer();
+        postService.save(content, strBegin, strEnd, customer, title);
+        return "redirect:";
+    }
 
+    private Customer getCustomer(){
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
@@ -50,10 +57,7 @@ public class HomeController {
         } else {
             username = principal.toString();
         }
-        Customer customer = customerService.getByUsername(username);
-
-        postService.save(content, strBegin, strEnd, customer);
-        return "index";
+        return customerService.getByUsername(username);
     }
 }
 
