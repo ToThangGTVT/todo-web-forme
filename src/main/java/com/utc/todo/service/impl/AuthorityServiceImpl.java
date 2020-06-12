@@ -1,7 +1,7 @@
 package com.utc.todo.service.impl;
 
 import com.utc.todo.entity.Authority;
-import com.utc.todo.repository.AuthorityRepo;
+import com.utc.todo.repository.AuthorityRepoJPA;
 import com.utc.todo.service.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthorityServiceImpl implements AuthorityService {
 
-    private AuthorityRepo authorityRepo;
+    private AuthorityRepoJPA authorityRepo;
 
     @Autowired
-    public AuthorityServiceImpl(AuthorityRepo authorityRepo) {
+    public AuthorityServiceImpl(AuthorityRepoJPA authorityRepo) {
         this.authorityRepo = authorityRepo;
     }
 

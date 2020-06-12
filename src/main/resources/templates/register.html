@@ -3,7 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
-    <title>Error</title>
+    <title>Register</title>
     <link id="theme" rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
     <!--    <link id="theme-style" rel="stylesheet" th:href="@{/assets/css/theme-1.css}">-->
     <script th:src="@{/assets/js/jquery-3.5.1.min.js}"></script>
@@ -32,7 +32,11 @@
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
         <form class="col-5 border rounded shadow p-4 mt-3" th:action="@{/register}" method="post">
-            <span th:text="${err}"></span>
+            <span th:if="${err=='err'}">
+                <div class="alert alert-danger" role="alert">
+                    This is a danger alert—check it out!
+                </div>
+            </span>
             <img src="assets/images/logo.jpg" class="rounded-circle mx-auto d-block mb-3" alt="...">
             <div class="row">
                 <div class="col-6">

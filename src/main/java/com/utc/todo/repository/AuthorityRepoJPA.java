@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.io.Serializable;
 
 @Repository
-public interface AuthorityRepo extends JpaRepository<Authority, Serializable> {
+public interface AuthorityRepoJPA extends JpaRepository<Authority, Serializable> {
     Authority findByName(String name);
+
 }

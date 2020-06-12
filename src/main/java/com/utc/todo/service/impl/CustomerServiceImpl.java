@@ -3,8 +3,8 @@ package com.utc.todo.service.impl;
 import com.utc.todo.dto.CustomUserDetail;
 import com.utc.todo.entity.Authority;
 import com.utc.todo.entity.Customer;
-import com.utc.todo.repository.AuthorityRepo;
-import com.utc.todo.repository.CustomerRepo;
+import com.utc.todo.repository.AuthorityRepoJPA;
+import com.utc.todo.repository.CustomerRepoJPA;
 import com.utc.todo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,14 +16,14 @@ import javax.transaction.Transactional;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-    private final CustomerRepo customerRepo;
+    private final CustomerRepoJPA customerRepo;
     private CustomUserDetail customUserDetail;
 
     @Autowired
-    private AuthorityRepo authorityRepo;
+    private AuthorityRepoJPA authorityRepo;
 
     @Autowired
-    public CustomerServiceImpl(CustomerRepo customerRepo) {
+    public CustomerServiceImpl(CustomerRepoJPA customerRepo) {
         this.customerRepo = customerRepo;
     }
 

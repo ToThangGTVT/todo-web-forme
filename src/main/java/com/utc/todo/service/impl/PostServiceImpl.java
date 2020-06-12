@@ -3,7 +3,7 @@ package com.utc.todo.service.impl;
 import com.utc.todo.entity.Customer;
 import com.utc.todo.entity.Post;
 import com.utc.todo.exception.DateInputException;
-import com.utc.todo.repository.PostRepo;
+import com.utc.todo.repository.PostRepoJPA;
 import com.utc.todo.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +18,10 @@ import java.util.List;
 @Service
 public class PostServiceImpl implements PostService {
 
-    private final PostRepo postRepo;
+    private final PostRepoJPA postRepo;
 
     @Autowired
-    public PostServiceImpl(PostRepo postRepo) {
+    public PostServiceImpl(PostRepoJPA postRepo) {
         this.postRepo = postRepo;
     }
 

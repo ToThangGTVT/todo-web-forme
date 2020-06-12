@@ -1,8 +1,6 @@
 package com.utc.todo.controller;
 
-import com.utc.todo.entity.Authority;
 import com.utc.todo.entity.Customer;
-import com.utc.todo.repository.CustomerRepo;
 import com.utc.todo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
