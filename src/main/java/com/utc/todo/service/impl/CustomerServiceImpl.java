@@ -3,6 +3,8 @@ package com.utc.todo.service.impl;
 import com.utc.todo.dto.CustomUserDetail;
 import com.utc.todo.entity.Authority;
 import com.utc.todo.entity.Customer;
+import com.utc.todo.exception.EmailExitsException;
+import com.utc.todo.exception.UsernameExitsException;
 import com.utc.todo.repository.AuthorityRepoJPA;
 import com.utc.todo.repository.CustomerRepoJPA;
 import com.utc.todo.service.CustomerService;
@@ -38,8 +40,14 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    @Transactional
-    public Customer save(Customer customer) {
+    @Transactional(rollbackOn = Exception.class)
+    public Customer save(Customer customer) throws EmailExitsException, UsernameExitsException {
+        if (checkEmailExits(customer.getEmail())){
+            throw new EmailExitsException();
+        }
+        if (checkUsernameExits(customer.getUsername())){
+            throw new UsernameExitsException();
+        }
         Authority authority = authorityRepo.findByName("USER");
         customer.setAuthority(authority);
         return customerRepo.save(customer);
@@ -48,5 +56,13 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer getByUsername(String username) {
         return customerRepo.getByUsername(username);
+    }
+
+    private boolean checkEmailExits(String email) {
+        return customerRepo.getByEmail(email).size() != 0;
+    }
+
+    private boolean checkUsernameExits(String username){
+        return getByUsername(username) != null;
     }
 }

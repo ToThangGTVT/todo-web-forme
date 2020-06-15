@@ -4,9 +4,11 @@
 
 <head>
     <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link id="theme" rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
     <!--    <link id="theme-style" rel="stylesheet" th:href="@{/assets/css/theme-1.css}">-->
     <script th:src="@{/assets/js/jquery-3.5.1.min.js}"></script>
+    <script th:src="@{/assets/js/validate.min.js}"></script>
     <style>
         .col-6{
             padding: 5px;
@@ -26,12 +28,15 @@
             width: 100%;
             margin-top: 10px;
         }
+        .error{
+            color: red;
+        }
     </style>
 </head>
 <body>
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
-        <form class="col-5 border rounded shadow p-4 mt-3" th:action="@{/register}" method="post">
+        <form class="col-lg-5 border rounded shadow p-4 mt-3" id="formRegister" th:action="@{/register}" method="post">
             <span th:if="${err=='err'}">
                 <div class="alert alert-danger" role="alert">
                     This is a danger alert—check it out!
@@ -42,13 +47,13 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="firstName">First Name</label>
-                        <input type="text" name="firstName" maxlength="50" minlength="2" required class="form-control" id="firstName" placeholder="First Name">
+                        <input type="text" name="firstName" maxlength="50" minlength="2" th:value="${customer.firstName}" required class="form-control" id="firstName" placeholder="First Name">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label for="lastName">Last Name</label>
-                        <input type="text" name="lastName" maxlength="50" minlength="2" required class="form-control" id="lastName" placeholder="Last Name">
+                        <input type="text" name="lastName" maxlength="50" minlength="2" th:value="${customer.lastName}" required class="form-control" id="lastName" placeholder="Last Name">
                     </div>
                 </div>
             </div>
@@ -56,7 +61,8 @@
                 <div class="col-12">
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" required name="username" maxlength="100" class="form-control" id="username" placeholder="Username">
+                        <input th:value="${customer.username}" type="text" required name="username" maxlength="100" class="form-control" id="username" placeholder="Username">
+                        <label th:if="${username=='err'}"  for="email" class="error">Username đã được sử dụng.</label>
                     </div>
                 </div>
             </div>
@@ -64,14 +70,15 @@
                 <div class="col-12">
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" required name="email" maxlength="100" class="form-control" id="email" placeholder="Email">
+                        <input th:value="${customer.email}" type="email" required name="email" maxlength="100" class="form-control" id="email" placeholder="Email">
+                        <label th:if="${email=='err'}"  for="email" class="error">Email đã được sử dụng.</label>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">Email</label>
                         <input type="password" name="password" class="form-control" maxlength="255" minlength="8" required id="password" placeholder="Password">
                     </div>
                 </div>
@@ -100,9 +107,42 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" id="button" class="btn btn-primary">Register</button>
+            <div class="form-check mb-3 pl-0">
+                <a href="/login">Đã có tài khoản, đăng nhập tại đây</a>
+            </div>
+            <button type="submit" id="button" class="btn btn-primary mt-0">Login</button>
         </form>
     </div>
 </div>
 </body>
+<script>
+    $('#formRegister').validate({
+        rule: {
+            firstName: {
+                required: true,
+                minlength: 2,
+                maxlength: 50
+            },
+            lastName: {
+                required: true,
+                minlength: 2,
+                maxlength: 50
+            },
+            username: {
+                required: true,
+                minlength: 2,
+                maxlength: 50
+            },
+            email: {
+                email: true,
+                maxlength: 50
+            },
+            password: {
+                required: true,
+                minlength: 8,
+                maxlength: 50
+            }
+        }
+    })
+</script>
 </html>

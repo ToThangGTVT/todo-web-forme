@@ -18,7 +18,6 @@ public class LoginController {
 
     @GetMapping("login")
     private String showLogin(HttpServletRequest request) {
-        HttpSession session = request.getSession();
         return "login";
     }
 }
