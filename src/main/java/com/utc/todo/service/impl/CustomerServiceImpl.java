@@ -42,10 +42,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional(rollbackOn = Exception.class)
     public Customer save(Customer customer) throws EmailExitsException, UsernameExitsException {
-        if (checkEmailExits(customer.getEmail())){
+        if (checkEmailExits(customer.getEmail())) {
             throw new EmailExitsException();
         }
-        if (checkUsernameExits(customer.getUsername())){
+        if (checkUsernameExits(customer.getUsername())) {
             throw new UsernameExitsException();
         }
         Authority authority = authorityRepo.findByName("USER");
@@ -59,10 +59,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     private boolean checkEmailExits(String email) {
+        if (email == null) {
+            return false;
+        }
         return customerRepo.getByEmail(email).size() != 0;
     }
 
-    private boolean checkUsernameExits(String username){
+    private boolean checkUsernameExits(String username) {
         return getByUsername(username) != null;
     }
 }

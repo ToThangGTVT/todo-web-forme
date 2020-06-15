@@ -31,6 +31,9 @@ public class Customer {
     @ManyToOne(fetch = FetchType.EAGER)
     private Authority authority;
 
+    public Customer() {
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
