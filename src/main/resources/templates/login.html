@@ -13,7 +13,7 @@
 <body>
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
-        <form class="col-lg-5 border rounded shadow p-4 mt-5" id="formRegister" th:action="@{/login}" method="post">
+        <form class="col-lg-5 border rounded shadow p-4 mt-5" id="formLogin" th:action="@{/login}" method="post">
             <img src="assets/images/logo.jpg" class="rounded-circle mx-auto d-block mb-3" alt="...">
             <div class="form-group">
                 <label for="exampleInputUser">Username</label>
@@ -33,7 +33,7 @@
 </div>
 </body>
 <script>
-    $('#formRegister').validate({
+    $('#formLogin').validate({
         rule: {
             username: {
                 required: true,
