@@ -82,6 +82,5 @@ public class HomeController {
         postService.save(post);
         return "redirect:/";
     }
-
 }
 

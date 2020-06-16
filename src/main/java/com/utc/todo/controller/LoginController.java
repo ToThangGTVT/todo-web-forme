@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
@@ -57,15 +56,18 @@ public class LoginController {
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        Customer customer = new Customer();
-        customer.setUsername(user.getId());
-        customer.setFirstName(user.getName());
-        customerService.save(customer);
+        if (customerService.getByUsername(user.getId()) == null) {
+            Customer customer = new Customer();
+            customer.setUsername(user.getId());
+            customer.setFirstName(user.getName());
+            customerService.save(customer);
+        }
+
         return "redirect:/";
     }
 
     @ExceptionHandler(value = UsernameExitsException.class)
-    private ModelAndView exceptionUsernameExits(Model model){
+    private ModelAndView exceptionUsernameExits(Model model) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/");
         return mav;

@@ -48,7 +48,7 @@ public class RestFB {
 		boolean accountNonLocked = true;
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-		UserDetails userDetail = new User(user.getId() + "_" +user.getName(), "", enabled, accountNonExpired, credentialsNonExpired,
+		UserDetails userDetail = new User(user.getId(), "", enabled, accountNonExpired, credentialsNonExpired,
 				accountNonLocked, authorities);
 		return userDetail;
 	}
